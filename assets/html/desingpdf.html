@@ -1,0 +1,124 @@
+<!doctype html>
+    <html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        * {
+            box-sizing: border-box;
+        }
+    
+        .tableRegistros{
+            width: 50px; 
+            border: 1px solid #dddddd;
+            text-align: left; 
+            padding: 8px;
+        }
+        
+        .tableRegistrosC{
+            width: 50px; 
+            border: 1px solid #dddddd;
+            text-align: center; 
+            padding: 8px;
+        }
+    
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+    
+        .referencia{
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+        }
+        
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+    
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+    
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    
+        .parrafo {
+            font-weight: 700;
+            width: 100%;
+        }
+    
+        </style>
+    </head>
+    <body>
+        <div style="padding: 20px;">
+    
+        <div class="row">
+            <div class="column">
+            <h3>Registro de cadena de custodia</h3>
+            </div>
+    
+            <div class="column">
+            <table class="referencia">
+                <thead>
+                <tr>
+                <th>No. de referencia</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>` + this.carpetaDataSelectedToPDF.nuc + `</td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    
+        <br>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Institucion o unidad administrativa</th>
+                    <th>Folio o llamado</th>
+                    <th>Lugar de intervencion</th>
+                    <th>Fecha y hora de intervencion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="4">` + this.carpetaDataSelectedToPDF.institucion + `</td>
+                    <td rowspan="4">` + this.carpetaDataSelectedToPDF.nuc + `</td>
+                    <td>` + this.carpetaDataSelectedToPDF.lugar + `</td>
+                    <td rowspan="2">` + this.carpetaDataSelectedToPDF.fechaIntervencion + `</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td rowspan="2">` + this.carpetaDataSelectedToPDF.horaIntervencion + `</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    
+        <p class="parrafo">Inicio de la cadena de custodia. </p><p>(Marque con un a "X" el motivo por el cual comienza el registro).</p>
+    
+        </div>
+    </body>
+</html>

@@ -1,0 +1,608 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["components-peritos-peritos-module"],{
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/peritos/peritos.component.html":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/peritos/peritos.component.html ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<mk-box>\n    <div class=\"row\">\n        <div class=\"col-md-2\">\n            <button nz-button nzType=\"primary\" (click)=\"showModalEntregaIndicios()\" class=\"search-button\"><i class=\"fa fa-archive\" aria-hidden=\"true\"></i> Entregar</button>\n        </div>\n    </div>\n</mk-box>\n\n<div style=\"background: white;\">\n    <nz-table #tableCarpetas [nzData]=\"indiciosXPerito\" nzBordered=\"true\" [nzLoading]=\"isLoading\" nzSize=\"small\" nzShowPagination=\"true\">\n        <thead>\n            <tr>\n                <th>NUC</th>\n                <th>Identificacion</th>\n                <th>Naturaleza</th>\n                <th>Descripcion</th>\n                <ng-template [ngxPermissionsOnly]=\"['canViewFolderDetials', 'canEditFolderDetials', 'canDeleteFolderDetials']\">\n                    <th>Acciones</th>\n                </ng-template>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let data of tableCarpetas.data;\">\n                <td class=\"text-center\">{{ data.nuc }}</td>\n                <td class=\"text-center\">{{ data.identificacion }}</td>\n                <td>{{ data.naturaleza }}</td>\n                <td>{{ data.descripcion }}</td>\n                <ng-template [ngxPermissionsOnly]=\"['canViewFolderDetials', 'canEditFolderDetials', 'canDeleteFolderDetials']\">\n                    <td class=\"text-center\">\n                        <ng-template ngxPermissionsOnly=\"canViewFolderDetials\">\n                            <button style=\"margin-right: 10px\" nzTitle=\"Ver\" nzPlacement=\"topCenter\" nz-tooltip class=\"btn btn-success-sabinas\" (click)=\"showModalIndicioDetalle(data)\"><i nz-icon nzType=\"search\" nzTheme=\"outline\"></i></button>\n                        </ng-template>\n\n                        <ng-template ngxPermissionsOnly=\"canEditFolderDetials\">\n                            <button style=\"margin-right: 10px\" nzTitle=\"Editar\" nzPlacement=\"topCenter\" nz-tooltip class=\"btn btn-success\" (click)=\"showModalEditIndicio(data)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\n                        </ng-template>\n\n                        <ng-template ngxPermissionsOnly=\"canDeleteFolderDetials\">\n                            <button style=\"margin-right: 10px\" class=\"btn btn-danger\" nzTitle=\"Eliminar\" nzPlacement=\"topCenter\" nz-tooltip (click)=\"showModalDeleteIndicio(data)\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>\n                        </ng-template>\n                    </td>\n                </ng-template>\n            </tr>\n        </tbody>\n    </nz-table>\n</div>\n\n                    <!------------------------------------- MODAL INDICIO ------------------------------------------>\n                         \n<nz-modal [(nzVisible)]=\"isVisibleIndicioDetalle\" [nzWidth]=\"1000\" [nzTitle]=\"modalTitleViewIndicio\" [nzContent]=\"modalContentViewIndicio\" [nzFooter]=\"modalFooterViewIndicio\" (nzOnCancel)=\"handleCancelIndicioDetalle()\">\n<ng-template #modalTitleViewIndicio>Detalle Indicio</ng-template>\n\n<ng-template #modalContentViewIndicio>\n    <nz-card nzTitle=\"\" nzType=\"inner\" style=\"background-color: white;\">\n        <nz-card-tab>\n            <nz-tabset nzSize=\"large\" [(nzSelectedIndex)]=\"index1\">\n                <nz-tab nzTitle=\"Detalle\" style=\"background-color: white;\">\n                    <h4 style=\"font-weight: bold;\">Carpeta de investigacion: {{ this.indicioXPeritoDataSelected.nuc }}</h4>\n                    <div class=\"row\" *ngFor=\"let data of this.detalleCarperta;\">\n                        <div class=\"col-md-3\">\n                            <label for=\"\">Fecha de intervencion</label>\n                            <p>{{ this.data.fechaIntervencion }}</p>\n                        </div>\n\n                        <div class=\"col-md-3\">\n                            <label for=\"\">Hora de intervencion</label>\n                            <p>{{ this.data.horaIntervencion }}</p>\n                        </div>\n\n                        <div class=\"col-md-3\">\n                            <label for=\"\">Lugar de intervencion</label>\n                            <p>{{ this.data.lugar }}</p>\n                        </div>\n\n                        <div class=\"col-md-3\">\n                            <label for=\"\">NC</label>\n                            <p>{{ this.data.inicio }}</p>\n                        </div>\n                    </div>\n                    <br>\n\n                    <h4 style=\"font-weight: bold;\">Indicio: {{ this.indicioXPeritoDataSelected.identificacion }}</h4>\n                    <div class=\"row\">\n                        <div class=\"form-group\">\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Fecha de levantamiento</label>\n                                <p>{{ this.indicioXPeritoDataSelected.fecha }}</p>\n                            </div>\n\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Hora de levantamiento</label>\n                                <p>{{ this.indicioXPeritoDataSelected.hora }}</p>\n                            </div>\n\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Lugar de levantamiento</label>\n                                <p>{{ this.indicioXPeritoDataSelected.lugar }}</p>\n                            </div>\n\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Descripcion</label>\n                                <p>{{ this.indicioXPeritoDataSelected.descripcion }}</p>\n                            </div>\n                        </div>\n                    </div>\n                    <br>\n\n                    <div class=\"row\">\n                        <div class=\"form-group\">\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Naturaleza</label>\n                                <p>{{ this.indicioXPeritoDataSelected.naturaleza }}</p>\n                            </div>\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Recolección</label>\n                                <p>{{ this.indicioXPeritoDataSelected.recoleccion }}</p>\n                            </div>\n\n                            <div class=\"col-md-3\">\n                                <label for=\"\">Empaque/Embalaje</label>\n                                <p>{{ this.indicioXPeritoDataSelected.embalaje }}</p>\n                            </div>\n\n                            <div class=\"col-md-3\">\n                                <label for=\"\">SmartTag</label>\n                                <p>{{ this.indicioXPeritoDataSelected.smart_tag }}</p>\n                            </div>\n                        </div>\n                    </div>\n                    <br>\n\n                    <div *ngIf=\"this.indicioXPeritoDataSelected.foto1 != 'NA'\">\n                        <label for=\"\">Fotografias</label>\n                        <br>\n                        <div class=\"row\">\n                            <div class=\"col-md-6\">\n                                <img [src]=\"imagePath1\" alt=\"\" style=\"width: 100%; height:50%\">\n                            </div>\n\n                            <div class=\"col-md-6\" *ngIf=\"this.indicioXPeritoDataSelected.foto2 != 'NA'\">\n                                <img [src]=\"imagePath2\" alt=\"\" style=\"width: 100%; height:50%\">\n                            </div>\n                        </div>\n                    </div>\n                    <br>\n\n                    <label for=\"\">Ubicacion del indicio</label>\n                    <br>\n                    <div class=\"row\">\n                        <div class=\"col-md-12\">\n                            <div #map style=\"pointer-events:none; width:100%; height:350px\"></div>\n                        </div>\n                    </div>\n                </nz-tab>\n\n                <nz-tab nzTitle=\"Servidor publico\">\n\n                    <div style=\"background: white;\">\n                        <nz-table #servidoresPublicosTable [nzData]=\"servidorpublicoXIndicio\" nzBordered=\"true\" [nzLoading]=\"isLoading\" nzSize=\"small\" nzShowPagination=\"true\">\n                            <thead>\n                                <tr>\n                                    <th>Nombre</th>\n                                    <th>Cargo</th>\n                                    <th>Etapa</th>\n                                    <th>Via</th>\n                                    <th>Condicion especial</th>\n                                    <th>Recomendacion</th>\n                                </tr>\n                            </thead>\n                            <tbody>\n                                <tr *ngFor=\"let data of servidoresPublicosTable.data;\">\n                                    <td>{{ data.nombre }}</td>\n                                    <td>{{ data.cargo }}</td>\n                                    <td>{{ data.etapa }}</td>\n                                    <td>{{ data.via }}</td>\n                                    <td class=\"text-center\">{{ data.condicionespecial }}</td>\n                                    <td>{{ data.recomendacion }}</td>\n                                </tr>\n                            </tbody>\n                        </nz-table>\n                    </div>\n                   \n                </nz-tab>\n            </nz-tabset>\n        </nz-card-tab>\n    </nz-card>\n</ng-template>\n\n<ng-template #modalFooterViewIndicio>\n    <button nz-button nzType=\"primary\" nzTitle=\"Ver PDF\" nzPlacement=\"topCenter\" nz-tooltip (click)=\"showModalViewPDFXIndicio()\">Ver PDF</button>\n    <button nz-button nzType=\"default\" (click)=\"handleCancelIndicioDetalle()\">Cerrar</button>\n</ng-template>\n\n</nz-modal>               \n                     \n                     \n                     \n                     \n                     \n                     \n                     \n\n\n\n\n\n\n\n\n\n\n\n\n\n                     \n                     \n                     \n                     \n                    <!------------------------------------- MODAL ENTREGA ------------------------------------------>\n\n<nz-modal [(nzVisible)]=\"isVisibleEntregar\" [nzWidth]=\"800\" [nzTitle]=\"modalTitleEntregar\" [nzContent]=\"modalContentEntregar\" [nzFooter]=\"modalFooterEntregar\" (nzOnCancel)=\"handleCancelEntregaIndicios()\">\n    <ng-template #modalTitleEntregar>Entrega-Recepción de indicos o elementos materiales probatorios</ng-template>\n\n    <ng-template #modalContentEntregar>\n        <div class=\"row\" style=\"margin: 10px;\">\n          \n            <div class=\"row\">\n                <div class=\"col-md-4\">\n                    <label>Selección de Folio o llamado</label>\n                    <nz-select nzShowSearch style=\"width: 200px;\" nzAllowClear nzPlaceHolder=\"Seleccionar Folio\" [(ngModel)]=\"searchValueFolio\" (ngModelChange)=\"onChangeFolio($event)\">\n                        <nz-option *ngFor=\"let nf of carpetasEntrega;\" nzLabel=\"{{ nf.nuc }}\" nzValue=\"{{ nf.nuc }}\"></nz-option>\n                    </nz-select>\n                </div>\n\n                <form [formGroup]=\"entregaForm\">\n\n                    <div class=\"col-md-4\">\n                        <label>Lugar de la entrega-recepción</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"lugar\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Actividad/Propósito</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"actividad\">\n                    </div>\n                </form>\n            </div>\n\n            <br>\n\n            <h4>1. Inventario</h4>\n            <div class=\"row\">\n                <div class=\"col-md-4\">\n                    <label>Selección de naturaleza</label>\n                    <nz-select nzShowSearch style=\"width: 200px;\" nzAllowClear nzPlaceHolder=\"Seleccionar Naturaleza\" [(ngModel)]=\"searchValueNaturaleza\" (ngModelChange)=\"onChangeNaturaleza($event)\">\n                        <nz-option nzValue=\"Arma blanca\" nzLabel=\"Arma blanca\"></nz-option>\n                        <nz-option nzValue=\"Arma de fuego\" nzLabel=\"Arma de fuego\"></nz-option>\n                        <nz-option nzValue=\"Biológico\" nzLabel=\"Biológico\"></nz-option>\n                        <nz-option nzValue=\"Extremidades del cuerpo\" nzLabel=\"Extremidades del cuerpo\"></nz-option>\n                        <nz-option nzValue=\"Indicios balísticos\" nzLabel=\"Indicios balísticos\"></nz-option>\n                        <nz-option nzValue=\"Indicio físico\" nzLabel=\"Indicio físico\"></nz-option>\n                        <nz-option nzValue=\"Indicios lofoscópicos\" nzLabel=\"Indicios lofoscópicos\"></nz-option>\n                        <nz-option nzValue=\"Indicio químico\" nzLabel=\"Indicio químico\"></nz-option>\n                        <nz-option nzValue=\"Occisos\" nzLabel=\"Occisos\"></nz-option>\n                        <nz-option nzValue=\"Vehículos\" nzLabel=\"Vehículos\"></nz-option>\n                    </nz-select>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <div style=\"text-align: center;margin-top: 25px;\">\n                        <label for=\"\">- o -</label>\n                    </div>\n                </div>\n\n                <div class=\"col-md-4\">\n                    <label>Selección de indicio</label>\n                    <nz-select nzShowSearch style=\"width: 200px;\" nzAllowClear nzPlaceHolder=\"Seleccionar Indicio\" [(ngModel)]=\"searchValueIndicio\" (ngModelChange)=\"onChangeIndicio($event)\">\n                        <nz-option *ngFor=\"let ip of indiciosXPerito;\" nzLabel=\"{{ ip.identificacion }}\" nzValue=\"{{ ip.identificacion }}\"></nz-option>\n                    </nz-select>\n                </div>\n            </div>\n\n            <br>\n\n            <form [formGroup]=\"entregaForm\">\n                <h4>2. Embalaje</h4>\n                <div class=\"row\">\n                    <div class=\"col-md-4\">\n                        <label>Nombre completo</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"nombre\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Institucion</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"institucion\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Cargo</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"cargo\">\n                    </div>\n\n                </div>\n\n                <br>\n\n                <h4>Persona que recibe</h4>\n                <div class=\"row\">\n                    <div class=\"col-md-4\">\n                        <label>Nombre completo</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"nombrerecibe\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Institucion</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"institucionrecibe\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Cargo</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"cargorecibe\">\n                    </div>\n\n                </div>\n\n                <br>\n                \n                <div class=\"row\">\n                    <div class=\"col-md-4\">\n                        <label>Lugar de permanencia</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"permanencia\">\n                    </div>\n\n                    <div class=\"col-md-4\">\n                        <label>Observaciones</label>\n                        <input type=\"text\" class=\"form-control\" formControlName=\"observacion\">\n                    </div>\n\n                </div>\n            </form>\n\n        </div>\n\n\n    </ng-template>\n\n    <ng-template #modalFooterEntregar>\n        <button nz-button nzType=\"default\" (click)=\"handleCancelEntregaIndicios()\">Cerrar</button>\n        <button nz-button nzType=\"primary\" (click)=\"addEntrega()\" class=\"search-button\">Entregar</button>\n    </ng-template>\n\n</nz-modal>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<nz-modal [(nzVisible)]=\"isVisibleEditIndicio\" [nzWidth]=\"800\" [nzTitle]=\"modalTitleEditIndicio\" [nzContent]=\"modalContentEditIndicio\" [nzFooter]=\"modalFooterEditIndicio\" (nzOnCancel)=\"handleCancelEditIndicio()\">\n    <ng-template #modalTitleEditIndicio>Indicio: {{ this.indicioXPeritoDataSelected.identificacion }}</ng-template>\n  \n    <ng-template #modalContentEditIndicio>\n        <form [formGroup]=\"indicioEditForm\">\n            <div class=\"row\">\n           \n                <div class=\"col-md-6\">\n                    <label for=\"\">Descripcion</label>\n                    <input type=\"text\" class=\"form-control\" formControlName=\"descripcion\">  \n                </div>\n                \n                <div class=\"col-md-6\">\n                    <label for=\"\">Lugar</label>\n                    <input type=\"text\" class=\"form-control\" formControlName=\"lugar\">\n                </div>\n\n            </div>\n        </form>\n    </ng-template>\n  \n    <ng-template #modalFooterEditIndicio>\n        <button nz-button nzType=\"default\" (click)=\"handleCancelEditIndicio()\">Cerrar</button>\n        <button nz-button nzType=\"primary\" (click)=\"onSubmitEditIndicio()\" [nzLoading]=\"isConfirmLoadingEditIndicio\">Guardar cambios</button>\n    </ng-template>\n  </nz-modal>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\n\n\n<nz-modal [(nzVisible)]=\"isVisibleViewPDFXIndicio\" [nzWidth]=\"855\" [nzTitle]=\"modalTitleViewPDFXIndicio\"[nzContent]=\"modalContentViewPDFXIndicio\" [nzFooter]=\"modalFooterViewPDFXIndicio\" (nzOnCancel)=\"handleCancelViewPDFXIndicio()\">\n    <ng-template #modalTitleViewPDFXIndicio>Carpeta de investigación: {{ this.carpetaDataSelectedToPDF.nuc }}</ng-template>\n\n    <ng-template #modalContentViewPDFXIndicio>\n        <div id=\"viewpdfXIndiciodesing\">\n            <!-- Inicio hoja 1 -->\n            <div class=\"hoja\">\n                <div class=\"header\">\n                    <img class=\"logo-baja\" src=\"../../../assets/img_pdf/GobEstatal.png\" alt=\"Logo del estado de Baja California\">\n                    <img class=\"logo-pgje\" src=\"../../../assets/img_pdf/PGJE.png\" alt=\"Logo PGJE\">\n                </div>\n                <!-- Inicion tabla No. referencia -->\n                <div class=\" flex space-between mt-header\">\n                    <p class=\"texto-negritas\">Registro de Cadena de Custodia</p>\n                    <div class=\"tabla tabla-no-referencia\">\n                        <div class=\"campo-encabezado border-b\">\n                            No. de referencia\n                        </div>\n                        <div class=\"campo-textoen\">\n                            {{ this.carpetaDataSelectedToPDF.nuc }}\n                        </div>\n                    </div>\n                </div>\n                <!-- Fin de No. referencia -->\n\n                <div class=\"mt-header\">\n                    <!-- Inicio tabla -->\n                    <div class=\"tabla\">\n                        <!-- Inicio primera parte de la tabla -->\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-encabezado border-r flex-1 flex align-center\">\n                                <p class=\"flex-1\">Institución o unidad administrativa</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-1 flex align-center\">\n                                <p class=\"flex-1\">Folio o llamado</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-3 flex align-center\">\n                                <p class=\"flex-1\">Lugar de intervención</p>\n                            </div>\n                            <div class=\"campo-encabezado flex-1 flex align-center\">\n                                <p class=\"flex-1\">Fecha y hora de intervención</p>\n                            </div>\n                        </div>\n\n                        <div class=\"flex\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                {{ this.carpetaDataSelectedToPDF.institucion }}\n                            </div>\n                            <div class=\"campo-texto flex-1 border-r\">\n                                {{ this.carpetaDataSelectedToPDF.folio }}\n                            </div>\n                            <div class=\"flex-4\">\n                                <div class=\"flex\">\n\n                                    <div class=\"flex-3 border-r border-b flex felx-column\">\n                                        <div class=\"campo-texto border-b\">\n                                            {{ this.carpetaDataSelectedToPDF.lugar }}\n                                        </div>\n                                        <div class=\"campo-texto border-b\"> \n                                            <!-- {{ this.carpetaDataSelectedToPDF.lugar }} -->\n                                        </div>\n                                        <div class=\"campo-texto border-b\"> \n                                            <!-- {{ this.carpetaDataSelectedToPDF.lugar }} -->\n                                        </div>\n                                        <div class=\"campo-texto border-b\"> \n                                            <!-- {{ this.carpetaDataSelectedToPDF.lugar }} -->\n                                        </div>\n\n                                    </div>\n                                    <div class=\"flex-1 border-r\">\n                                        <div class=\"campo-texto flex-2 border-b\">\n                                            {{ this.carpetaDataSelectedToPDF.fechaIntervencion }}\n                                        </div>\n                                        <div class=\"campo-texto flex-2 border-b\">\n                                            {{ this.carpetaDataSelectedToPDF.horaIntervencion }}\n                                        </div>\n                                    </div>\n                                </div>\n\n                            </div>\n                        </div>\n                        <!-- Fin primera parte de la tabla -->\n                    </div>\n                    <!-- Fin tabla  -->\n                </div>\n\n                <p class=\"texto-info mt-5\">\n                    <b class=\"texto-negritas\">Inicio de la cadena de custodia.</b> (Marque con “X” el motivo por el cual\n                    comienza el registro).\n                </p>\n                <div class=\"tabla flex mt-20\">\n                    <div class=\"campo-encabezado flex-1 p-5\">\n                        Localización\n                    </div>\n                    <div class=\"campo-texto flex-1 p-5 border-r\">\n                        <p *ngIf=\"this.carpetaDataSelectedToPDF.inicio=='Localización'\">X</p>\n                    </div>\n                    <div class=\"campo-encabezado flex-1 p-5 border-r\">\n                        Descubrimiento\n                    </div>\n                    <div class=\"campo-texto flex-1 p-5 border-r\">\n                        <p *ngIf=\"this.carpetaDataSelectedToPDF.inicio=='Descubrimiento'\">X</p>\n                    </div>\n                    <div class=\"campo-encabezado flex-1 p-5 border-r\">\n                        Aportacion\n                    </div>\n                    <div class=\"campo-texto flex-1 p-5\">\n                        <p *ngIf=\"this.carpetaDataSelectedToPDF.inicio=='Aportacion'\">X</p>\n                    </div>\n                </div>\n\n                <!-- Inicio tabla identidad -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">1. Identidad.</b> (Número, letra o combinación alfanumérica asignada\n                        al indicio o elemento material probatorio, descripción general, incluyendo en su caso el estado\n                        o condición original en el momento de su recolección, ubicación en el lugar de intervención y\n                        hora de recolección. Relacione la identificación por secuencias cuando se trate de indicios o\n                        elementos materiales probatorios del mismo tipo o clase, en caso contrario, registre\n                        individualmente. Cancele los espacios sobrantes).\n                    </p>\n                    <div class=\"tabla\">\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-encabezado border-r flex-1 flex align-center\">\n                                <p class=\"flex-1\">Identificación</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-4 flex align-center\">\n                                <p class=\"flex-1\">Descripción</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-2 flex align-center\">\n                                <p class=\"flex-1\">Ubicación en el lugar</p>\n                            </div>\n                            <div class=\"campo-encabezado flex-1 flex align-center\">\n                                <p class=\"flex-1\">Hora de recolección</p>\n                            </div>\n                        </div>\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                {{ this.indicioDataSelectedToPDF.identificacion }}\n                            </div>\n                            <div class=\"campo-texto flex-4 border-r\">\n                                {{ this.indicioDataSelectedToPDF.descripcion }}\n                            </div>\n                            <div class=\"campo-texto flex-2 border-r\">\n                                {{ this.indicioDataSelectedToPDF.lugar }}\n                            </div>\n                            <div class=\"campo-texto flex-1\">\n                                {{ this.indicioDataSelectedToPDF.hora }}\n                            </div>\n                        </div>\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.identificacion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-4 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.descripcion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-2 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.lugar }} -->\n                            </div>\n                            <div class=\"campo-texto flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.hora }} -->\n                            </div>\n                        </div>\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.identificacion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-4 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.descripcion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-2 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.lugar }} -->\n                            </div>\n                            <div class=\"campo-texto flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.hora }} -->\n                            </div>\n                        </div>\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.identificacion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-4 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.descripcion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-2 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.lugar }} -->\n                            </div>\n                            <div class=\"campo-texto flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.hora }} -->\n                            </div>\n                        </div>\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-texto border-r flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.identificacion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-4 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.descripcion }} -->\n                            </div>\n                            <div class=\"campo-texto flex-2 border-r\">\n                                <!-- {{ this.indicioDataSelectedToPDF.lugar }} -->\n                            </div>\n                            <div class=\"campo-texto flex-1\">\n                                <!-- {{ this.indicioDataSelectedToPDF.hora }} -->\n                            </div>\n                        </div>\n\n\n                    </div>\n                </div>\n                <!-- Fin tabla identidad -->\n\n                <!-- Inicio tabla documentacion -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">2. Documentación.</b> (Marque con “X” los métodos empleados o\n                        especifique cualquier otro en caso necesario).\n                    </p>\n                    <div class=\"tabla p-5\">\n                        <div class=\"flex flex-1 space-between\" >\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Escrito:</p>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Sí</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.escrito=='Si'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">No</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.escrito=='No'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Fotográfico:</p>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Sí</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.fotografico=='Si'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">No</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.fotografico=='No'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Croquis:</p>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">Sí</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.croquis=='Si'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">No</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.croquis=='No'\">X</p>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"flex flex-1 mt-5\">\n                            <div class=\"flex align-center mr-40\">\n                                <p>Otro:</p>\n                            </div>\n                            <div class=\"flex align-center mr-20\">\n                                <p class=\"mr-5\">Sí</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.otro=='Si'\">X</p>\n                                </div>\n                            </div>\n                            <div class=\"flex align-center\">\n                                <p class=\"mr-5\">No</p>\n                                <div class=\"contenedor-x\">\n                                    <p *ngIf=\"this.indicioDataSelectedToPDF.otro=='No'\">X</p>\n                                </div>\n                            </div>\n                        </div> \n\n                        \n                        <p class=\"mt-5\" style=\"text-align: justify;\">Especifique: <span class=\"underline\">{{ this.indicioDataSelectedToPDF.especifique }}</span></p>\n                    </div>\n                </div>\n                <!-- Fin tabla documentacion -->\n\n                <!-- Inicio tabla documentacion -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">3. Recolección.</b> (Coloque el número, letra o combinación de los\n                        indicios o elementos materiales probatorios de acuerdo a las condiciones de cómo fueron\n                        levantados según corresponda. Puede emplear intervalos).\n                    </p>\n                    <div class=\"tabla\">\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-encabezado flex-1 p-5 border-r\">\n                                Manual\n                            </div>\n                            <div class=\"campo-encabezado flex-1 p-5\">\n                                Instrumental\n                            </div>\n                        </div>\n                        <div class=\"flex\">\n                            <div class=\"campo-texto flex-1 p-5 border-r\">\n                                <ng-container *ngIf='this.indicioDataSelectedToPDF.recoleccion == \"Manual\"'>\n                                   <label for=\"\">{{ this.indicioDataSelectedToPDF.identificacion }} </label> \n                                </ng-container>\n                            </div>\n                            <div class=\"campo-texto flex-1 p-5\">\n                                <ng-container *ngIf='this.indicioDataSelectedToPDF.recoleccion == \"Instrumental\"'>\n                                    <label for=\"\">{{ this.indicioDataSelectedToPDF.identificacion }} </label> \n                                </ng-container>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                <!-- Fin tabla documentacion -->\n                <br>\n\n                <!-- Incio registro de cadena -->\n                <div class=\"row\">\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">FO-820</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Versión 2</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Página <span class=\"underline\">1</span> de <span class=\"underline\">3</span></p>\n                        \n                    </div>\n                </div>\n                <!-- Fin registro de cadena -->\n\n                <!-- <div style=\"width: 100%; height: 30px;\"></div> -->\n\n            </div>\n            <!-- Inicio hoja 1 -->\n\n            <!-- Inicio hoja 2 -->\n            <div class=\"hoja mt-20\">\n                <div class=\"header\">\n                    <img class=\"logo-baja\" src=\"../../../assets/img_pdf/GobEstatal.png\" alt=\"Logo baja california\">\n                    <img class=\"logo-pgje\" src=\"../../../assets/img_pdf/PGJE.png\" alt=\"Logo pgje\">\n                </div>\n                <!-- Inicion tabla No. referencia -->\n                <div class=\" flex flex-end no-referencia\">\n                    <div class=\"tabla tabla-no-referencia\">\n                        <div class=\"campo-encabezado border-b\">\n                            No. de referencia\n                        </div>\n                        <div class=\"campo-textoen\">\n                            {{ this.carpetaDataSelectedToPDF.nuc }}\n                        </div>\n                    </div>\n                </div>\n                <!-- Fin de No. referencia -->\n\n                <!-- Inicio tabla empaque/embalaje -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">4. Empaque/embalaje.</b> (Coloque el número, letra o combinación de\n                        los indicios o elementos materiales de acuerdo al tipo de embalaje que se empleó para su\n                        preservación o conservación, según corresponda. Puede emplear intervalos).\n                    </p>\n                    <div class=\"tabla\">\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-encabezado flex-1 border-r p-5\">\n                                Bolsa\n                            </div>\n                            <div class=\"campo-encabezado flex-1 border-r p-5\">\n                                Caja\n                            </div>\n                            <div class=\"campo-encabezado flex-1 p-5\">\n                                Recipientes\n                            </div>\n                        </div>\n                        <div class=\"flex\">\n                                <div class=\"campo-texto flex-1 border-r p-5\">\n                                    <ng-container *ngIf='this.indicioDataSelectedToPDF.embalaje == \"Bolsa\"'>\n                                        <label for=\"\">{{ this.indicioDataSelectedToPDF.identificacion }} </label> \n                                    </ng-container>\n                                </div>\n                                <div class=\"campo-texto flex-1 border-r p-5\">\n                                    <ng-container *ngIf='this.indicioDataSelectedToPDF.embalaje == \"Caja\"'>\n                                        <label for=\"\">{{ this.indicioDataSelectedToPDF.identificacion }} </label> \n                                    </ng-container>\n                                </div>\n                            \n                                <div class=\"campo-texto flex-1 p-5\">\n                                    <ng-container *ngIf='this.indicioDataSelectedToPDF.embalaje == \"Recipientes\"'>\n                                        <label for=\"\">{{ this.indicioDataSelectedToPDF.identificacion }} </label> \n                                     </ng-container>\n                                </div>\n                            </div>\n                        </div>\n                    <!-- </div> -->\n                </div>\n                <!-- Fin tabla empaque/embalaje -->\n\n                <!-- Inicio tabla servidores publicos -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">5. Servidores públicos.</b> (Todo servidor publico que haya\n                        participado en el procesamiento de los indicios o elementos materiales probatorios deberá\n                        escribir su nombre completo, la institución a la que pertenece, su carga, la etapa del\n                        procesamiento en la que intervino y su firma autógrafa. Se deberán cancelar los espacios\n                        sobrantes).\n                    </p>\n\n                    <div class=\"tabla\">\n                        <div class=\"flex border-b\">\n                            <div class=\"campo-encabezado border-r flex-2 p-5\">\n                                <p >Nombre Completo</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-2 p-5\">\n                                <p >Institución y cargo</p>\n                            </div>\n                            <div class=\"campo-encabezado border-r flex-2 p-5\">\n                                <p >Etapa</p>\n                            </div>\n                            <div class=\"campo-encabezado flex-1 p-5\">\n                                <p >Firma</p>\n                            </div>\n                        </div>\n\n                        <div class=\"flex border-b\" *ngFor=\"let dsptp of dataServidorPublicoToPDF;\">\n                            <div class=\"campo-texto border-r flex-2 \">\n                                {{ dsptp.nombre }}\n                            </div>\n\n                            <div class=\"flex-2 border-r\">\n                                <div class=\"campo-texto flex-2 border-b\">\n                                    {{ dsptp.institucion }}\n                                </div>\n                                <div class=\"campo-texto\">\n                                    {{ dsptp.cargo }}\n                                </div>\n                            </div>\n\n                            <div class=\"campo-texto flex-2 border-r\">\n                                {{ dsptp.etapa }}\n                            </div>\n\n                            <div class=\"campo-texto flex-1\">\n                                <!-- {{ dsptp.firma }} -->\n                            </div>\n                        </div>\n\n\n                        <ng-container *ngIf=\"this.dataServidorPublicoToPDF.length == 3; else esIgualAlaCantidad3\">\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\"></div>\n                                <div class=\"flex-2 border-r\">\n                                    <div class=\"campo-texto flex-2 border-b\"></div>\n                                    <div class=\"campo-texto\"></div>\n                                </div>\n                                <div class=\"campo-texto flex-2 border-r\"></div>\n                                <div class=\"campo-texto flex-1\"></div>\n                            </div>\n\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\"></div>\n                                <div class=\"flex-2 border-r\">\n                                    <div class=\"campo-texto flex-2 border-b\"></div>\n                                    <div class=\"campo-texto\"></div>\n                                </div>\n                                <div class=\"campo-texto flex-2 border-r\"></div>\n                                <div class=\"campo-texto flex-1\"></div>\n                            </div>\n                            \n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\"></div>\n                                <div class=\"flex-2 border-r\">\n                                    <div class=\"campo-texto flex-2 border-b\"></div>\n                                    <div class=\"campo-texto\"></div>\n                                </div>\n                                <div class=\"campo-texto flex-2 border-r\"></div>\n                                <div class=\"campo-texto flex-1\"></div>\n                            </div>\n\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\"></div>\n                                <div class=\"flex-2 border-r\">\n                                    <div class=\"campo-texto flex-2 border-b\"></div>\n                                    <div class=\"campo-texto\"></div>\n                                </div>\n                                <div class=\"campo-texto flex-2 border-r\"></div>\n                                <div class=\"campo-texto flex-1\"></div>\n                            </div>\n                        </ng-container>\n                        <ng-template #esIgualAlaCantidad3>\n                        </ng-template>\n\n                    </div>\n\n                        \n       \n\n            \n                </div>\n                <!-- Fin tabla servidores publicos -->\n\n                <!-- Inicio tabla traslado -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">6. Traslado.</b> (Marque con “X” la vía empleada. En caso de ser\n                        necesaria alguna condición especial para la conservación o preservación de un indicio o elemento\n                        material probatorio en particular, el personal pericial o policial con capacidades para el\n                        procesar, según sea el caso, deberá recomendarla).\n                    </p>\n                    <div class=\"tabla\">\n                        <div class=\"border-b campos-traslado\">\n                            <div class=\"flex flex-1 space-between\">\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">a) Vía:</p>\n                                </div>\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">Terrestre</p>\n                                    <div class=\"contenedor-x\">\n                                        <p *ngIf=\"this.servidorpublicoDataSelectedToPDF.via=='Terrestre'\">X</p>\n                                    </div>\n                                </div>\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">Aérea</p>\n                                    <div class=\"contenedor-x\">\n                                        <p *ngIf=\"this.servidorpublicoDataSelectedToPDF.via=='Aérea'\">X</p>\n                                    </div>\n                                </div>\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">Marítima</p>\n                                    <div class=\"contenedor-x\">\n                                        <p *ngIf=\"this.servidorpublicoDataSelectedToPDF.via=='Marítima'\">X</p>\n                                    </div>\n                                </div>\n                            </div>\n                            <div class=\"flex flex-1 space-between\">\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">b) Se requieren condiciones especiales para su traslado:</p>\n                                </div>\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">No</p>\n                                    <div class=\"contenedor-x\">\n                                        <p *ngIf=\"this.servidorpublicoDataSelectedToPDF.condicionespecial=='No'\">X</p>\n                                    </div>\n                                </div>\n                                <div class=\"flex align-center\">\n                                    <p class=\"mr-5\">Si</p>\n                                    <div class=\"contenedor-x\">\n                                        <p *ngIf=\"this.servidorpublicoDataSelectedToPDF.condicionespecial=='Si'\">X</p>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                        <div class=\"recomendaciones p-4\">\n                            <p> Recomendaciones: {{ this.servidorpublicoDataSelectedToPDF.recomendacion }}</p>\n                        </div>\n                    </div>\n                </div>\n                <!-- Fin tabla traslado -->\n\n                <br>\n                <!-- <div style=\"width: 100%; height: 190px;\"></div> -->\n                \n\n                   <!-- Incio registro de cadena -->\n                   <div class=\"row\">\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">FO-820</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Versión 2</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Página <span class=\"underline\">2</span> de <span class=\"underline\">3</span></p>\n                      \n                    </div>\n                </div>\n                <!-- Fin registro de cadena -->\n\n                \n\n            </div>\n            <!-- Fin hoja 2 -->\n\n\n\n\n            <br>\n\n\n            <!-- Incio hoja 3 -->\n            <div class=\"hoja mt-20\">\n                <div class=\"header\">\n                    <img class=\"logo-baja\" src=\"../../../assets/img_pdf/GobEstatal.png\" alt=\"Logo baja california\">\n                    <img class=\"logo-pgje\" src=\"../../../assets/img_pdf/PGJE.png\" alt=\"Logo pgje\">\n                </div>\n                <!-- Inicion tabla No. referencia -->\n                <div class=\" flex flex-end no-referencia\">\n                    <div class=\"tabla tabla-no-referencia\">\n                        <div class=\"campo-encabezado border-b\">\n                            No. de referencia\n                        </div>\n                        <div class=\"campo-textoen\">\n                            {{ this.carpetaDataSelectedToPDF.nuc }}\n                        </div>\n                    </div>\n                </div>\n                <!-- Fin de No. referencia -->\n\n                <!-- Inicio tabla  Continuidad y trazabilidad -->\n                <div class=\"mt-20\">\n                    <p class=\"texto-info mb-5\">\n                        <b class=\"texto-negritas\">7. Continuidad y trazabilidad.</b> (Fecha y hora de la\n                        entrega-recepción, nombre completo de quien entrega y de quien recibe los indicios o elementos\n                        materiales probatorios en los cambios de custodia que realicen, institución a la que pertenecen,\n                        cargo o identificación dentro de la misma, propósito de la transferencia, firmas autógrafas y\n                        lugar de permanencia en la actividad respectiva. Anote las observaciones relacionadas con el\n                        embalaje, el indicio o elementos material probatorio o cualquier otra que considere necesario\n                        realizar. Agregue cuantas hojas sean necesarias. Cancele los espacios sobrantes después de que\n                        se haya cumplido con el destino final del indicio o elemento material probatorio).\n                    </p>\n\n                    <div class=\"tabla\">\n\n                        <div *ngFor=\"let entrega of this.entregaXNUC;\">\n                            <!-- Inicio primera parte de la tabla -->\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-encabezado border-r flex-2\">\n                                    Fecha y hora de entrega recepción\n                                </div>\n                                <div class=\"campo-encabezado border-r flex-4\">\n                                    Nombre, institución y cargo o identificación de quien entrega\n                                </div>\n                                <div class=\"campo-encabezado border-r flex-2\">\n                                    Actividad/propósito\n                                </div>\n                                <div class=\"campo-encabezado flex-1\">\n                                    Firma\n                                </div>\n                            </div>\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\">\n                                    {{ entrega.fecha }} {{ entrega.hora }}\n                                </div>\n                                <div class=\"border-r flex-6\">\n                                    <div class=\"flex\">\n                                        <div class=\"campo-texto flex-4 border-r border-b\">\n                                            {{ entrega.nombreentrega }}\n                                        </div>\n                                        <div class=\"campo-texto flex-2 border-b\">\n                                            {{ entrega.proposito }}\n                                        </div>\n                                    </div>\n                                    <div class=\"flex\">\n                                        <div class=\"campo-texto flex-4 border-r\">\n                                            {{ entrega.institucionentrega }}, {{ entrega.cargoentrega }}\n                                        </div>\n                                        <div class=\"campo-texto flex-2\">\n                                            <!-- Lorem ipsum dolor sit -->\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"campo-texto flex-1\">\n                                    <!-- firma entrega-->\n                                </div>\n                            </div>\n                            <!-- Fin primera parte de la tabla -->\n\n                            <!-- Inicio segunda parte de la tabla -->\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-encabezado border-r flex-2\">\n                                    Lugar de permanencia\n                                </div>\n                                <div class=\"campo-encabezado border-r flex-4\">\n                                    Nombre, institución y cargo o identificación de quien recibe\n                                </div>\n                                <div class=\"campo-encabezado border-r flex-2\">\n                                    Actividad/propósito\n                                </div>\n                                <div class=\"campo-encabezado flex-1\">\n                                    Firma\n                                </div>\n                            </div>\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-texto border-r flex-2\">\n                                    {{ entrega.lugarentrega }}\n                                </div>\n                                <div class=\"border-r flex-6\">\n                                    <div class=\"flex\">\n                                        <div class=\"campo-texto flex-4 border-r border-b\">\n                                            {{ entrega.nombrerecibe }}\n                                        </div>\n                                        <div class=\"campo-texto flex-2 border-b\">\n                                            {{ entrega.propositorecibe }}\n                                        </div>\n                                    </div>\n                                    <div class=\"flex\">\n                                        <div class=\"campo-texto flex-4 border-r\">\n                                            {{ entrega.institucionrecibe }}, {{ entrega.cargorecibe }}\n                                        </div>\n                                        <div class=\"campo-texto flex-2\">\n                                            <!-- Lorem ipsum dolor sit -->\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"campo-texto flex-1\">\n                                    <!-- Lorem ipsum dolor -->\n                                </div>\n                            </div>\n                            <!-- Fin segunda parte de la tabla -->\n\n                            <!-- Inicio tercera parte de la tabla -->\n                            <div class=\"flex border-b\">\n                                <div class=\"campo-encabezado flex-1\">\n                                    Observaciones\n                                </div>\n                            </div>\n                            <div class=\"campo-textob flex-1 border-b\">\n                                {{ entrega.observacion }}\n                            </div>\n                            <div class=\"campo-textob flex-1 border-b\">\n                                \n                            </div>\n                            <!-- Fin tercera parte de la tabla -->\n                        </div>\n\n                    </div>\n                </div>\n                <!-- Fin tabla  Continuidad y trazabilidad -->\n\n                <!-- <div style=\"width: 100%; height: 170px;\"></div> -->\n\n                <div class=\"mt-5\">\n                    <p class=\"texto-info\">Se anexa conticuacion de trazabilidad: &nbsp; Si [ ] &nbsp; No [ ]</p>\n                </div>\n                <br>\n\n                <!-- Incio registro de cadena -->\n                <div class=\"row\">\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">FO-820</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Versión 2</p>\n                    </div>\n                    <div class=\"col-md-4\" style=\"border-color: black;  border-style: solid; border-width: thin;\">\n                        <p style=\"text-align: center;\">Página <span class=\"underline\">3</span> de <span class=\"underline\">3</span></p>\n                      \n                    </div>\n                </div>\n                <!-- Fin registro de cadena -->\n\n            </div>\n            <!-- Fin hoja 3 -->\n\n        </div>\n    </ng-template>\n\n    <ng-template #modalFooterViewPDFXIndicio>\n        <button nz-button nzType=\"primary\" (click)=\"generatePDFXIndicio();\">Guardar PDF</button>\n        <button nz-button nzType=\"default\" (click)=\"handleCancelViewPDFXIndicio()\">Cerrar</button>\n    </ng-template>\n\n</nz-modal>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <div style=\"background: white;\">\n    <nz-table #tableIndicios [nzData]=\"indiciosXPerito\" nzBordered=\"true\" [nzLoading]=\"isLoadingIXN\" nzSize=\"small\" nzShowPagination=\"true\">\n    <thead>\n        <tr>\n            <th>NUC</th>\n            <th>Identificacion</th>\n            <th>Descripcion</th>\n            <th>Documentacion</th>\n            <th>Fecha</th>\n            <th>Hora</th>\n            <ng-template [ngxPermissionsOnly]=\"['canViewIndicioP', 'canEditIndicioP', 'canDeleteIndicioP']\">\n                <th>Acciones</th>\n            </ng-template>\n        </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let data of tableIndicios.data;\">\n            <td class=\"text-center\">{{ data.nuc }}</td>\n            <td class=\"text-center\">{{ data.identificacion }}</td>\n            <td>{{ data.descripcion }}</td>\n            <td>{{ data.documentacion }}</td>\n            <td>{{ data.fecha }}</td>\n            <td>{{ data.hora }}</td>\n            <ng-template [ngxPermissionsOnly]=\"['canViewIndicioP', 'canEditIndicioP', 'canDeleteIndicioP']\">\n                <td class=\"text-center\">\n                    <ng-template ngxPermissionsOnly=\"canViewIndicioP\">\n                        <button style=\"margin-right: 10px\" nzTitle=\"Ver\" nzPlacement=\"topCenter\" nz-tooltip class=\"btn btn-success-sabinas\" (click)=\"showModalViewIndicio(data)\"><i nz-icon nzType=\"search\" nzTheme=\"outline\"></i></button>\n                    </ng-template>\n\n                    <ng-template ngxPermissionsOnly=\"canEditIndicioP\">\n                        <button style=\"margin-right: 10px\" nzTitle=\"Editar\" nzPlacement=\"topCenter\" nz-tooltip class=\"btn btn-success\" (click)=\"showModalEditIndicio(data)\"><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\n                    </ng-template>\n\n                    <ng-template ngxPermissionsOnly=\"canDeleteIndicioP\">\n                        <button style=\"margin-right: 10px\" class=\"btn btn-danger\" nzTitle=\"Eliminar\" nzPlacement=\"topCenter\" nz-tooltip (click)=\"showModalDeleteIndicio(data)\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></button>\n                    </ng-template>\n\n                    <ng-template ngxPermissionsOnly=\"canViewPDFIndicioP\">\n                        <button style=\"margin-right: 10px\" class=\"btn btn-primary\" nzTitle=\"Ver PDF\" nzPlacement=\"topCenter\" nz-tooltip (click)=\"showModalViewPDFXIndicio(data)\"><i class=\"fa fa-eye\" aria-hidden=\"true\"></i></button>\n                    </ng-template>\n                </td>\n            </ng-template>\n        </tr>\n    </tbody>\n</nz-table>\n</div> -->");
+
+/***/ }),
+
+/***/ "./src/app/components/peritos/peritos-routing.module.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/components/peritos/peritos-routing.module.ts ***!
+  \**************************************************************/
+/*! exports provided: PeritosRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeritosRoutingModule", function() { return PeritosRoutingModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _peritos_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./peritos.component */ "./src/app/components/peritos/peritos.component.ts");
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _peritos_component__WEBPACK_IMPORTED_MODULE_3__["PeritosComponent"]
+    }
+];
+let PeritosRoutingModule = class PeritosRoutingModule {
+};
+PeritosRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        imports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"].forChild(routes)],
+        exports: [_angular_router__WEBPACK_IMPORTED_MODULE_2__["RouterModule"]]
+    })
+], PeritosRoutingModule);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/peritos/peritos.component.css":
+/*!**********************************************************!*\
+  !*** ./src/app/components/peritos/peritos.component.css ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("* {\r\n    box-sizing: border-box;\r\n}\r\n        \r\n.tableRegistros{\r\n    width: 50px; \r\n    border: 1px solid #dddddd;\r\n    text-align: left; \r\n    padding: 8px;\r\n}\r\n        \r\n.tableRegistrosC{\r\n    width: 50px; \r\n    border: 1px solid #dddddd;\r\n    text-align: center; \r\n    padding: 8px;\r\n}\r\n        \r\n.tablePDF  {\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 100%;\r\n}\r\n        \r\n.referencia{\r\n    font-family: arial, sans-serif;\r\n    border-collapse: collapse;\r\n    width: 50%;\r\n}\r\n        \r\n.tdthPDF {\r\n    border: 1px solid #dddddd;\r\n    text-align: left;\r\n    padding: 8px;\r\n}\r\n        \r\n.column {\r\n    float: left;\r\n    width: 50%;\r\n    padding: 10px;\r\n    text-align: center;\r\n}\r\n        \r\n.row:after {\r\n    content: \"\";\r\n    display: table;\r\n    clear: both;\r\n}\r\n        \r\n.parrafo {\r\n    font-weight: 700;\r\n    width: 100%;\r\n}\r\n        \r\n/* Estilos generales */\r\n        \r\nbody {\r\n  font-family: Arial, Helvetica, sans-serif;\r\n  height: 0px;\r\n  margin: 0px;\r\n}\r\n        \r\np {\r\n  margin: 0px;\r\n  font-size: 13px;\r\n}\r\n        \r\n/* Estilos reutilizables */\r\n        \r\n.hoja {\r\n  width: 800px;\r\n  background-color: #fff;\r\n  padding: 80px 60px 30px 60px;\r\n}\r\n        \r\n.flex {\r\n  display: flex;\r\n}\r\n        \r\n.felx-column {\r\n  flex-direction: column;\r\n}\r\n        \r\n.flex-end {\r\n  justify-content: flex-end;\r\n}\r\n        \r\n.space-between {\r\n  justify-content: space-between;\r\n}\r\n        \r\n.align-center {\r\n  align-items: center;\r\n}\r\n        \r\n.text-center {\r\n  text-align: center;\r\n}\r\n        \r\n.flex-1 {\r\n  flex: 1;\r\n}\r\n        \r\n.flex-2 {\r\n  flex: 2;\r\n}\r\n        \r\n.flex-3 {\r\n  flex: 3;\r\n}\r\n        \r\n.flex-4 {\r\n  flex: 4;\r\n}\r\n        \r\n.flex-5 {\r\n  flex: 5;\r\n}\r\n        \r\n.flex-6 {\r\n  flex: 6;\r\n}\r\n        \r\n.m-2{\r\n  margin: 2px;\r\n}\r\n        \r\n.mt-20 {\r\n  margin-top: 20px;\r\n}\r\n        \r\n.mt-header {\r\n  margin-top: 40px;\r\n}\r\n        \r\n.mt-5 {\r\n  margin-top: 5px;\r\n}\r\n        \r\n.mb-5 {\r\n  margin-bottom: 5px;\r\n}\r\n        \r\n.mr-5 {\r\n  margin-right: 5px;\r\n}\r\n        \r\n.mr-40 {\r\n  margin-right: 41px;\r\n}\r\n        \r\n.mr-20 {\r\n  margin-right: 21px;\r\n}\r\n        \r\n.ml-5 {\r\n  margin-left: 5px;\r\n}\r\n        \r\n.p-5 {\r\n  padding: 5px;\r\n}\r\n        \r\n.pt-5 {\r\n  padding-top: 5px;\r\n}\r\n        \r\n.pb-5 {\r\n  padding-bottom: 5px;\r\n}\r\n        \r\n.pr-5 {\r\n  padding-right: 5px;\r\n}\r\n        \r\n.pl-5 {\r\n  padding-left: 5px;\r\n}\r\n        \r\n.border-t {\r\n  border-top: 1px solid #000;\r\n}\r\n        \r\n.border-b {\r\n  border-bottom: 1px solid #000;\r\n}\r\n        \r\n.border-r {\r\n  border-right: 1px solid #000;\r\n}\r\n        \r\n.border-l {\r\n  border-left: 1px solid #000;\r\n}\r\n        \r\n.header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n        \r\n.logo-baja {\r\n  height: 60px;\r\n}\r\n        \r\n.logo-pgje {\r\n  height: 70px;\r\n}\r\n        \r\n.tabla {\r\n  border: 1px solid #000;\r\n}\r\n        \r\n.campo-encabezado {\r\n  background-color: #777;\r\n  color: #fff;\r\n  font-weight: bold ;\r\n  text-align: center;\r\n  min-height: 14px;\r\n  line-height: 14px;\r\n  font-size: 12px;\r\n}\r\n        \r\n.campo-texto {\r\n  text-align: center;\r\n  min-height: 20px;\r\n  font-size: 10px;\r\n}\r\n        \r\n.campo-textoen {\r\n  text-align: center;\r\n  min-height: 20px;\r\n  font-size: 14px;\r\n}\r\n        \r\n.campo-textob {\r\n  text-align: left;\r\n  min-height: 20px;\r\n  font-size: 10px;\r\n}\r\n        \r\n.texto-info {\r\n  font-size: 12px;\r\n  text-align: justify;\r\n}\r\n        \r\n.texto-negritas {\r\n  font-weight: bold;\r\n  font-size: 14px;\r\n}\r\n        \r\n.underline {\r\n  text-decoration: underline;\r\n}\r\n        \r\n.registro-cadena > p {\r\n  font-size: 12px;\r\n}\r\n        \r\n/* Estilos espesificos */\r\n        \r\n.no-referencia {\r\n  margin-top: 40px;\r\n}\r\n        \r\n.tabla-no-referencia {\r\n  width: 265px;\r\n}\r\n        \r\n.campos-traslado {\r\n  display: flex;\r\n  flex-direction: column;\r\n  padding-left: 30px;\r\n  padding-right: 30px;\r\n  height: 80px;\r\n}\r\n        \r\n.contenedor-x {\r\n  width: 50px;\r\n  height: 30px;\r\n  border: 1px solid #000;\r\n  text-align: center;\r\n  line-height: 30px;\r\n  text-transform: uppercase;\r\n}\r\n        \r\n.recomendaciones {\r\n  min-height: 80px;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wZXJpdG9zL3Blcml0b3MuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLHNCQUFzQjtBQUMxQjs7QUFFQTtJQUNJLFdBQVc7SUFDWCx5QkFBeUI7SUFDekIsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxXQUFXO0lBQ1gseUJBQXlCO0lBQ3pCLGtCQUFrQjtJQUNsQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksOEJBQThCO0lBQzlCLHlCQUF5QjtJQUN6QixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSw4QkFBOEI7SUFDOUIseUJBQXlCO0lBQ3pCLFVBQVU7QUFDZDs7QUFFQTtJQUNJLHlCQUF5QjtJQUN6QixnQkFBZ0I7SUFDaEIsWUFBWTtBQUNoQjs7QUFFQTtJQUNJLFdBQVc7SUFDWCxVQUFVO0lBQ1YsYUFBYTtJQUNiLGtCQUFrQjtBQUN0Qjs7QUFFQTtJQUNJLFdBQVc7SUFDWCxjQUFjO0lBQ2QsV0FBVztBQUNmOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLFdBQVc7QUFDZjs7QUFtQ0Esc0JBQXNCOztBQUN0QjtFQUNFLHlDQUF5QztFQUN6QyxXQUFXO0VBQ1gsV0FBVztBQUNiOztBQUNBO0VBQ0UsV0FBVztFQUNYLGVBQWU7QUFDakI7O0FBRUEsMEJBQTBCOztBQUMxQjtFQUNFLFlBQVk7RUFDWixzQkFBc0I7RUFDdEIsNEJBQTRCO0FBQzlCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsOEJBQThCO0FBQ2hDOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsT0FBTztBQUNUOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsZUFBZTtBQUNqQjs7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLGlCQUFpQjtBQUNuQjs7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFDQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFDQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFDQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFDQTtFQUNFLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLDBCQUEwQjtBQUM1Qjs7QUFDQTtFQUNFLDZCQUE2QjtBQUMvQjs7QUFDQTtFQUNFLDRCQUE0QjtBQUM5Qjs7QUFDQTtFQUNFLDJCQUEyQjtBQUM3Qjs7QUFHQTtFQUNFLGFBQWE7RUFDYiw4QkFBOEI7QUFDaEM7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBQ0E7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLGlCQUFpQjtFQUNqQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGdCQUFnQjtFQUNoQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGlCQUFpQjtFQUNqQixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsMEJBQTBCO0FBQzVCOztBQUNBO0VBQ0UsZUFBZTtBQUNqQjs7QUFFQSx3QkFBd0I7O0FBRXhCO0VBQ0UsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsZ0JBQWdCO0FBQ2xCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wZXJpdG9zL3Blcml0b3MuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIioge1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG4gICAgICAgIFxyXG4udGFibGVSZWdpc3Ryb3N7XHJcbiAgICB3aWR0aDogNTBweDsgXHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkZGRkO1xyXG4gICAgdGV4dC1hbGlnbjogbGVmdDsgXHJcbiAgICBwYWRkaW5nOiA4cHg7XHJcbn1cclxuICAgICAgICAgICAgXHJcbi50YWJsZVJlZ2lzdHJvc0N7XHJcbiAgICB3aWR0aDogNTBweDsgXHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkZGRkO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyOyBcclxuICAgIHBhZGRpbmc6IDhweDtcclxufVxyXG4gICAgICAgIFxyXG4udGFibGVQREYgIHtcclxuICAgIGZvbnQtZmFtaWx5OiBhcmlhbCwgc2Fucy1zZXJpZjtcclxuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG4gICAgICAgIFxyXG4ucmVmZXJlbmNpYXtcclxuICAgIGZvbnQtZmFtaWx5OiBhcmlhbCwgc2Fucy1zZXJpZjtcclxuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XHJcbiAgICB3aWR0aDogNTAlO1xyXG59XHJcbiAgICAgICAgICAgIFxyXG4udGR0aFBERiB7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkZGRkO1xyXG4gICAgdGV4dC1hbGlnbjogbGVmdDtcclxuICAgIHBhZGRpbmc6IDhweDtcclxufVxyXG4gICAgICAgIFxyXG4uY29sdW1uIHtcclxuICAgIGZsb2F0OiBsZWZ0O1xyXG4gICAgd2lkdGg6IDUwJTtcclxuICAgIHBhZGRpbmc6IDEwcHg7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuICAgICAgICBcclxuLnJvdzphZnRlciB7XHJcbiAgICBjb250ZW50OiBcIlwiO1xyXG4gICAgZGlzcGxheTogdGFibGU7XHJcbiAgICBjbGVhcjogYm90aDtcclxufVxyXG4gICAgICAgIFxyXG4ucGFycmFmbyB7XHJcbiAgICBmb250LXdlaWdodDogNzAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcbi8qIEVzdGlsb3MgZ2VuZXJhbGVzICovXHJcbmJvZHkge1xyXG4gIGZvbnQtZmFtaWx5OiBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmO1xyXG4gIGhlaWdodDogMHB4O1xyXG4gIG1hcmdpbjogMHB4O1xyXG59XHJcbnAge1xyXG4gIG1hcmdpbjogMHB4O1xyXG4gIGZvbnQtc2l6ZTogMTNweDtcclxufVxyXG5cclxuLyogRXN0aWxvcyByZXV0aWxpemFibGVzICovXHJcbi5ob2phIHtcclxuICB3aWR0aDogODAwcHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICBwYWRkaW5nOiA4MHB4IDYwcHggMzBweCA2MHB4O1xyXG59XHJcblxyXG4uZmxleCB7XHJcbiAgZGlzcGxheTogZmxleDtcclxufVxyXG5cclxuLmZlbHgtY29sdW1uIHtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcblxyXG4uZmxleC1lbmQge1xyXG4gIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XHJcbn1cclxuXHJcbi5zcGFjZS1iZXR3ZWVuIHtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5hbGlnbi1jZW50ZXIge1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi50ZXh0LWNlbnRlciB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uZmxleC0xIHtcclxuICBmbGV4OiAxO1xyXG59XHJcblxyXG4uZmxleC0yIHtcclxuICBmbGV4OiAyO1xyXG59XHJcblxyXG4uZmxleC0zIHtcclxuICBmbGV4OiAzO1xyXG59XHJcblxyXG4uZmxleC00IHtcclxuICBmbGV4OiA0O1xyXG59XHJcblxyXG4uZmxleC01IHtcclxuICBmbGV4OiA1O1xyXG59XHJcblxyXG4uZmxleC02IHtcclxuICBmbGV4OiA2O1xyXG59XHJcblxyXG4ubS0ye1xyXG4gIG1hcmdpbjogMnB4O1xyXG59XHJcblxyXG4ubXQtMjAge1xyXG4gIG1hcmdpbi10b3A6IDIwcHg7XHJcbn1cclxuXHJcbi5tdC1oZWFkZXIge1xyXG4gIG1hcmdpbi10b3A6IDQwcHg7XHJcbn1cclxuXHJcbi5tdC01IHtcclxuICBtYXJnaW4tdG9wOiA1cHg7XHJcbn1cclxuLm1iLTUge1xyXG4gIG1hcmdpbi1ib3R0b206IDVweDtcclxufVxyXG4ubXItNSB7XHJcbiAgbWFyZ2luLXJpZ2h0OiA1cHg7XHJcbn1cclxuLm1yLTQwIHtcclxuICBtYXJnaW4tcmlnaHQ6IDQxcHg7XHJcbn1cclxuLm1yLTIwIHtcclxuICBtYXJnaW4tcmlnaHQ6IDIxcHg7XHJcbn1cclxuLm1sLTUge1xyXG4gIG1hcmdpbi1sZWZ0OiA1cHg7XHJcbn1cclxuXHJcbi5wLTUge1xyXG4gIHBhZGRpbmc6IDVweDtcclxufVxyXG4ucHQtNSB7XHJcbiAgcGFkZGluZy10b3A6IDVweDtcclxufVxyXG4ucGItNSB7XHJcbiAgcGFkZGluZy1ib3R0b206IDVweDtcclxufVxyXG4ucHItNSB7XHJcbiAgcGFkZGluZy1yaWdodDogNXB4O1xyXG59XHJcbi5wbC01IHtcclxuICBwYWRkaW5nLWxlZnQ6IDVweDtcclxufVxyXG5cclxuLmJvcmRlci10IHtcclxuICBib3JkZXItdG9wOiAxcHggc29saWQgIzAwMDtcclxufVxyXG4uYm9yZGVyLWIge1xyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjMDAwO1xyXG59XHJcbi5ib3JkZXItciB7XHJcbiAgYm9yZGVyLXJpZ2h0OiAxcHggc29saWQgIzAwMDtcclxufVxyXG4uYm9yZGVyLWwge1xyXG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgIzAwMDtcclxufVxyXG5cclxuXHJcbi5oZWFkZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG59XHJcblxyXG4ubG9nby1iYWphIHtcclxuICBoZWlnaHQ6IDYwcHg7XHJcbn1cclxuLmxvZ28tcGdqZSB7XHJcbiAgaGVpZ2h0OiA3MHB4O1xyXG59XHJcblxyXG4udGFibGEge1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICMwMDA7XHJcbn1cclxuXHJcbi5jYW1wby1lbmNhYmV6YWRvIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNzc3O1xyXG4gIGNvbG9yOiAjZmZmO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkIDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgbWluLWhlaWdodDogMTRweDtcclxuICBsaW5lLWhlaWdodDogMTRweDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbn1cclxuXHJcbi5jYW1wby10ZXh0byB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIG1pbi1oZWlnaHQ6IDIwcHg7XHJcbiAgZm9udC1zaXplOiAxMHB4O1xyXG59XHJcblxyXG4uY2FtcG8tdGV4dG9lbiB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIG1pbi1oZWlnaHQ6IDIwcHg7XHJcbiAgZm9udC1zaXplOiAxNHB4O1xyXG59XHJcblxyXG4uY2FtcG8tdGV4dG9iIHtcclxuICB0ZXh0LWFsaWduOiBsZWZ0O1xyXG4gIG1pbi1oZWlnaHQ6IDIwcHg7XHJcbiAgZm9udC1zaXplOiAxMHB4O1xyXG59XHJcblxyXG4udGV4dG8taW5mbyB7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIHRleHQtYWxpZ246IGp1c3RpZnk7XHJcbn1cclxuXHJcbi50ZXh0by1uZWdyaXRhcyB7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgZm9udC1zaXplOiAxNHB4O1xyXG59XHJcblxyXG4udW5kZXJsaW5lIHtcclxuICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTtcclxufVxyXG4ucmVnaXN0cm8tY2FkZW5hID4gcCB7XHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG59XHJcblxyXG4vKiBFc3RpbG9zIGVzcGVzaWZpY29zICovXHJcblxyXG4ubm8tcmVmZXJlbmNpYSB7XHJcbiAgbWFyZ2luLXRvcDogNDBweDtcclxufVxyXG5cclxuLnRhYmxhLW5vLXJlZmVyZW5jaWEge1xyXG4gIHdpZHRoOiAyNjVweDtcclxufVxyXG5cclxuLmNhbXBvcy10cmFzbGFkbyB7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIHBhZGRpbmctbGVmdDogMzBweDtcclxuICBwYWRkaW5nLXJpZ2h0OiAzMHB4O1xyXG4gIGhlaWdodDogODBweDtcclxufVxyXG5cclxuLmNvbnRlbmVkb3IteCB7XHJcbiAgd2lkdGg6IDUwcHg7XHJcbiAgaGVpZ2h0OiAzMHB4O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICMwMDA7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIGxpbmUtaGVpZ2h0OiAzMHB4O1xyXG4gIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XHJcbn1cclxuXHJcbi5yZWNvbWVuZGFjaW9uZXMge1xyXG4gIG1pbi1oZWlnaHQ6IDgwcHg7XHJcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/components/peritos/peritos.component.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/components/peritos/peritos.component.ts ***!
+  \*********************************************************/
+/*! exports provided: PeritosComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeritosComponent", function() { return PeritosComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm2015/platform-browser.js");
+/* harmony import */ var ng_zorro_antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ng-zorro-antd */ "./node_modules/ng-zorro-antd/fesm2015/ng-zorro-antd.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var src_app_models_entrega__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/models/entrega */ "./src/app/models/entrega.ts");
+/* harmony import */ var src_app_models_indicio__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/models/indicio */ "./src/app/models/indicio.ts");
+/* harmony import */ var src_app_models_logs__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/models/logs */ "./src/app/models/logs.ts");
+/* harmony import */ var src_app_services_carpeta_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/services/carpeta.service */ "./src/app/services/carpeta.service.ts");
+/* harmony import */ var src_app_services_entrega_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! src/app/services/entrega.service */ "./src/app/services/entrega.service.ts");
+/* harmony import */ var src_app_services_home_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! src/app/services/home.service */ "./src/app/services/home.service.ts");
+/* harmony import */ var src_app_services_indicio_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! src/app/services/indicio.service */ "./src/app/services/indicio.service.ts");
+/* harmony import */ var src_app_services_peritos_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! src/app/services/peritos.service */ "./src/app/services/peritos.service.ts");
+/* harmony import */ var src_app_services_servidorpublico_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! src/app/services/servidorpublico.service */ "./src/app/services/servidorpublico.service.ts");
+/* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let PeritosComponent = class PeritosComponent {
+    constructor(carpetasSetvice, indiciosService, peritoService, entregaService, servidorPublicoService, formBuilder, datepipe, toastr, http, homeServices, _sanitizer, modalService) {
+        this.carpetasSetvice = carpetasSetvice;
+        this.indiciosService = indiciosService;
+        this.peritoService = peritoService;
+        this.entregaService = entregaService;
+        this.servidorPublicoService = servidorPublicoService;
+        this.formBuilder = formBuilder;
+        this.datepipe = datepipe;
+        this.toastr = toastr;
+        this.http = http;
+        this.homeServices = homeServices;
+        this._sanitizer = _sanitizer;
+        this.modalService = modalService;
+        this.carpetasPerito = [];
+        this.carpetasPeritoF = [];
+        this.carpetasPeritoBackup = [];
+        this.detalleCarperta = [];
+        this.indiciosXPerito = [];
+        this.indiciosXPeritoBackup = [];
+        this.servidorpublicoXIndicio = [];
+        this.servidorpublicoDataSelectedToPDF = [];
+        this.isVisibleEntregar = false;
+        this.isVisibleIndicioDetalle = false;
+        this.isLoading = true;
+        this.mostrar = false;
+        this.isVisibleViewPDFXIndicio = false;
+        this.now = new Date();
+        this.data = [];
+        this.browserName = '';
+        this.browserVersion = '';
+        this.isVisibleEditIndicio = false;
+        this.submittedEditIndicio = false;
+        this.isConfirmLoadingEditIndicio = false;
+        this.entregaXNUC = [];
+        this.currentUserSubject = new rxjs__WEBPACK_IMPORTED_MODULE_8__["BehaviorSubject"](JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+        this.peritoService.getIndiciosXPeritoAndFolder(this.currentUserSubject.value.nombre_usuario).subscribe(request => {
+            this.indiciosXPerito = request;
+            // // this.indiciosXPeritoBackup = request;
+            this.isLoading = false;
+            console.log(this.indiciosXPerito);
+            let datos = [];
+            let registros = [];
+            var datosU = [];
+            var contU = 0;
+            request.forEach((re) => {
+                datos.push(re.nuc);
+            });
+            datos.sort();
+            datos.forEach(c => {
+                if (datos[contU] == c) {
+                    while (datos[contU] == c) {
+                        contU++;
+                    }
+                    datosU.push({ 'nuc': c });
+                }
+            });
+            this.carpetasEntrega = datosU;
+            console.log(this.carpetasEntrega);
+            // if(registros.length > 0) {
+            //   var carpetasPeritoBIF = [];
+            //   registros.forEach((req) => {
+            //     this.peritoService.getFolderXPerito(req.nuc).subscribe(result => {
+            //       // this.carpetasPerito = result;
+            //       this.carpetasPeritoBackup = result;
+            //       result.forEach((res)=> {
+            //         this.carpetasPerito.push({
+            //           'nuc': res.nuc,
+            //           'isOpen': res.isOpen,
+            //           'horaIntervencion': res.horaIntervencion,
+            //           'fechaIntervencion': res.fechaIntervencion,
+            //           'lugar': res.lugar,
+            //           'institucion': res.institucion,
+            //           'inicio': res.inicio,
+            //           'folio': res.folio,
+            //           'entregado': res.entregado,
+            //         });
+            //       });
+            //       this.isLoading = false;
+            //         carpetasPeritoBIF = this.carpetasPerito;
+            //     },
+            //     error => {
+            //       console.log(error);
+            //     }); 
+            //   });
+            //   console.log(carpetasPeritoBIF);
+            //   if(registros.length >= carpetasPeritoBIF.length){
+            //     this.carpetasPeritoF = carpetasPeritoBIF;
+            //   }
+            // }
+        }, error => {
+            console.log(error);
+        });
+    }
+    ngOnInit() {
+        this.dateLogin = this.datepipe.transform(this.now, 'dd/MM/yyyy hh:mm:ss', 'es');
+        this.fech = this.datepipe.transform(this.now, 'dd/MM/yyyy', 'es');
+        this.hor = this.datepipe.transform(this.now, 'hh:mm:ss', 'es');
+        this.entregaForm = this.formBuilder.group({
+            lugar: [''],
+            actividad: [''],
+            nombre: [''],
+            institucion: [''],
+            cargo: [''],
+            nombrerecibe: [''],
+            institucionrecibe: [''],
+            cargorecibe: [''],
+            permanencia: [''],
+            observacion: ['']
+        });
+        this.indicioEditForm = this.formBuilder.group({
+            descripcion: ['',],
+            lugar: [' ',],
+        });
+        this.getIPAddress();
+        this.browserName = this.detectBrowserName();
+        this.browserVersion = this.detectBrowserVersion();
+        setTimeout(() => {
+            this.Logs('peritos/indicios', 'Consulto modulo peritos/indicios', this.currentUserSubject.value.id_usuario, 'Consulta', 'Consulto el modulo de peritos/indicios: ');
+        }, 4000);
+    }
+    getIPAddress() {
+        this.http.get('https://jsonip.com').subscribe(data => {
+            this.ipAddressPrivate = data['ip'];
+        });
+        this.http.get('https://api.ipify.org?format=json').subscribe(data => {
+            this.ipAddressPublic = data['ip'];
+        });
+    }
+    detectBrowserName() {
+        const agent = window.navigator.userAgent.toLowerCase();
+        switch (true) {
+            case agent.indexOf('edge') > -1:
+                return 'edge';
+            case agent.indexOf('opr') > -1 && !!window.opr:
+                return 'opera';
+            case agent.indexOf('chrome') > -1 && !!window.chrome:
+                return 'chrome';
+            case agent.indexOf('trident') > -1:
+                return 'ie';
+            case agent.indexOf('firefox') > -1:
+                return 'firefox';
+            case agent.indexOf('safari') > -1:
+                return 'safari';
+            default:
+                return 'other';
+        }
+    }
+    detectBrowserVersion() {
+        var userAgent = navigator.userAgent, tem, matchTest = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if (/trident/i.test(matchTest[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(userAgent) || [];
+            return 'IE ' + (tem[1] || '');
+        }
+        if (matchTest[1] === 'Chrome') {
+            tem = userAgent.match(/\b(OPR|Edge)\/(\d+)/);
+            if (tem != null)
+                return tem.slice(1).join(' ').replace('OPR', 'Opera');
+        }
+        matchTest = matchTest[2] ? [matchTest[1], matchTest[2]] : [navigator.appName, navigator.appVersion, '-?'];
+        if ((tem = userAgent.match(/version\/(\d+)/i)) != null)
+            matchTest.splice(1, 1, tem[1]);
+        return matchTest.join(' ');
+    }
+    Logs(tabla, objeto, id, tipo, descipcion) {
+        var navegadorUsed = this.browserName + ', ' + this.browserVersion;
+        var descripcion = descipcion + ' por ' + this.currentUserSubject.value.nombre_usuario;
+        if (this.ipAddressPrivate == undefined) {
+            this.ipAddressPrivate = '';
+        }
+        if (this.ipAddressPublic == undefined) {
+            this.ipAddressPublic = '';
+        }
+        let metaData = new src_app_models_logs__WEBPACK_IMPORTED_MODULE_11__["AdmLogs"](tabla, objeto, id, tipo, descripcion, this.currentUserSubject.value.nombre_empleado, this.currentUserSubject.value.nombre_usuario, this.ipAddressPublic, this.ipAddressPrivate, navegadorUsed, this.dateLogin);
+        this.homeServices.addLogLogin(metaData).subscribe(result => {
+        }, err => {
+            console.log(err);
+        });
+    }
+    onChangeFolio(value) {
+        if (value) {
+            this.searchValueFolio = value;
+            console.log(this.searchValueFolio);
+        }
+        else {
+            this.searchValueFolio = undefined;
+        }
+    }
+    onChangeNaturaleza(value) {
+        if (value) {
+            this.searchValueNaturaleza = value;
+            console.log(this.searchValueNaturaleza);
+        }
+        else {
+            this.searchValueNaturaleza = undefined;
+        }
+    }
+    onChangeIndicio(value) {
+        if (value) {
+            this.searchValueIndicio = value;
+            console.log(this.searchValueIndicio);
+        }
+        else {
+            this.searchValueIndicio = undefined;
+        }
+    }
+    showModalIndicioDetalle(data) {
+        setTimeout(() => {
+            this.Logs('peritos/indicios', 'Consulta detalle indicio ' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Consulta', 'Visualizo los detalles del indicio ');
+        }, 1000);
+        this.indicioXPeritoDataSelected = JSON.parse(JSON.stringify(data));
+        this.dataIndicioToPDF = data;
+        this.imagePath1 = 'https://back.tlk.com.mx/' + this.indicioXPeritoDataSelected.foto1;
+        this.imagePath2 = 'https://back.tlk.com.mx/' + this.indicioXPeritoDataSelected.foto2;
+        this.carpetasSetvice.getFolderxNUC(this.indicioXPeritoDataSelected.nuc).subscribe(request => {
+            this.detalleCarperta = request;
+            this.dataCarpetaToPDF = request[0];
+        }, error => {
+            console.log(error);
+        });
+        this.servidorPublicoService.getServidorPublicoXIndicio(this.indicioXPeritoDataSelected.nuc, this.indicioXPeritoDataSelected.identificacion).subscribe(request => {
+            this.servidorpublicoXIndicio = request;
+            this.dataServidorPublicoToPDF = request;
+            console.log('esto es del servidor ', this.servidorpublicoXIndicio);
+        }, error => {
+            console.log(error);
+        });
+        setTimeout(() => {
+            this.initializeMap(Number(this.indicioXPeritoDataSelected.latitud), Number(this.indicioXPeritoDataSelected.longitud));
+        }, 1000);
+        this.isVisibleIndicioDetalle = true;
+    }
+    handleCancelIndicioDetalle() {
+        this.isVisibleIndicioDetalle = false;
+    }
+    initializeMap(latitude, longitud) {
+        const lngLat = new google.maps.LatLng(latitude, longitud);
+        const mapOptions = {
+            center: lngLat,
+            zoom: 18,
+            fullscreenControl: false,
+            mapTypeControl: false,
+            streetViewControl: false,
+            zoomControl: false,
+            scrollwheel: false,
+            disableDoubleClickZoom: true,
+            mapTypeId: 'hybrid'
+        };
+        this.map = new google.maps.Map(this.gmapElement.nativeElement, mapOptions);
+        let marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitud),
+            map: this.map,
+            title: 'Ubicacion del indicio',
+        });
+        marker.setMap(this.map);
+    }
+    showModalEntregaIndicios() {
+        setTimeout(() => {
+            this.Logs('entrega', 'Consulta de actividad de entrega ' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Consulta', 'Visualizo los detalles de entrega ');
+        }, 1000);
+        this.entregaForm.controls['nombre'].setValue(this.currentUserSubject.value.nombre_empleado);
+        this.entregaForm.controls['institucion'].setValue('PGJE');
+        this.entregaForm.controls['cargo'].setValue(this.currentUserSubject.value.cargo);
+        this.isVisibleEntregar = true;
+    }
+    handleCancelEntregaIndicios() {
+        this.isVisibleEntregar = false;
+        this.entregaForm.controls['lugar'].setValue(null);
+        this.entregaForm.controls['actividad'].setValue(null);
+        this.entregaForm.controls['nombre'].setValue(null);
+        this.entregaForm.controls['institucion'].setValue(null);
+        this.entregaForm.controls['cargo'].setValue(null);
+        this.entregaForm.controls['nombrerecibe'].setValue(null);
+        this.entregaForm.controls['institucionrecibe'].setValue(null);
+        this.entregaForm.controls['cargorecibe'].setValue(null);
+        this.entregaForm.controls['permanencia'].setValue(null);
+        this.entregaForm.controls['observacion'].setValue(null);
+        this.searchValueFolio;
+        this.searchValueIndicio;
+        this.searchValueNaturaleza;
+    }
+    addEntrega() {
+        let data = new src_app_models_entrega__WEBPACK_IMPORTED_MODULE_9__["Entrega"](null, 'nuc', //mandar por defauld
+        this.searchValueFolio, this.entregaForm.get('lugar').value, this.fech, this.hor, '', //embajale vacio
+        this.entregaForm.get('nombre').value, this.entregaForm.get('nombrerecibe').value, this.entregaForm.get('institucion').value, this.entregaForm.get('institucionrecibe').value, this.entregaForm.get('cargo').value, this.entregaForm.get('cargorecibe').value, 'firma', 'firmarecibe', this.searchValueNaturaleza, this.searchValueIndicio, this.entregaForm.get('observacion').value, this.entregaForm.get('permanencia').value, this.entregaForm.get('actividad').value, this.entregaForm.get('propositorecibe').value, this.entregaForm.get('identificadores').value);
+        console.log(data);
+        this.entregaService.addEntrega(data).subscribe(result => {
+            this.toastr.success('Entrega realizada con exito!');
+            this.handleCancelEntregaIndicios();
+        }, err => {
+            console.log(err);
+            this.toastr.error('Hubo un error al realizar la entrega');
+        });
+    }
+    showModalEditIndicio(data) {
+        setTimeout(() => {
+            this.Logs('indicio', 'Consulta actividad de edicion indicio' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Consulta', 'Visualizo los detalles de edicion de indicio ');
+        }, 1000);
+        this.indicioXPeritoDataSelected = JSON.parse(JSON.stringify(data));
+        console.log(this.indicioXPeritoDataSelected);
+        this.indicioEditForm.controls['descripcion'].setValue(this.indicioXPeritoDataSelected.descripcion);
+        this.indicioEditForm.controls['lugar'].setValue(this.indicioXPeritoDataSelected.lugar);
+        this.isVisibleEditIndicio = true;
+    }
+    handleCancelEditIndicio() {
+        this.isVisibleEditIndicio = false;
+        this.submittedEditIndicio = false;
+    }
+    onSubmitEditIndicio() {
+        this.submittedEditIndicio = true;
+        if (this.indicioEditForm.invalid) {
+            return;
+        }
+        this.isConfirmLoadingEditIndicio = true;
+        let indicio = new src_app_models_indicio__WEBPACK_IMPORTED_MODULE_10__["Indicio"](this.indicioXPeritoDataSelected.id_indicio, this.indicioXPeritoDataSelected.identificacion, this.indicioEditForm.get('descripcion').value, this.indicioXPeritoDataSelected.fecha, this.indicioXPeritoDataSelected.hora, this.indicioXPeritoDataSelected.documentacion, this.indicioXPeritoDataSelected.recoleccion, this.indicioXPeritoDataSelected.embalaje, this.indicioXPeritoDataSelected.latitud, this.indicioXPeritoDataSelected.longitud, this.indicioEditForm.get('lugar').value, this.indicioXPeritoDataSelected.foto1, this.indicioXPeritoDataSelected.naturaleza, this.indicioXPeritoDataSelected.nombreUsuario, this.indicioXPeritoDataSelected.usuario, this.indicioXPeritoDataSelected.smart_tag, this.indicioXPeritoDataSelected.foto2, this.indicioXPeritoDataSelected.nuc, this.indicioXPeritoDataSelected.escrito, this.indicioXPeritoDataSelected.fotografico, this.indicioXPeritoDataSelected.croquis, this.indicioXPeritoDataSelected.otro, this.indicioXPeritoDataSelected.especifique, this.indicioXPeritoDataSelected.entregado, this.indicioXPeritoDataSelected.estado);
+        console.log(indicio);
+        this.indiciosService.updateIndicio(indicio).subscribe(result => {
+            this.isConfirmLoadingEditIndicio = false;
+            this.isVisibleEditIndicio = false;
+            this.toastr.success('Campos actualizados!');
+            setTimeout(() => {
+                this.Logs('indicios', 'Edicion del indicio ' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Actualizacion', 'Realizo cambios en el campo de descripcion de "' + this.indicioXPeritoDataSelected.descripcion + '" a "' + this.indicioEditForm.get('descripcion').value + '" y realizo cambios en lugar de "' + this.indicioXPeritoDataSelected.lugar + '" a "' + this.indicioEditForm.get('lugar').value + '".');
+            }, 1000);
+            // this.usuariosService.getUsersApp().subscribe(request => {
+            //   this.usuarios = request;
+            //   this.isLoading = false;
+            // },
+            // error => {
+            //   console.log(error);
+            // });
+        }, err => {
+            console.log(err);
+            this.isConfirmLoadingEditIndicio = false;
+            this.toastr.error('Hubo un error al editar el indicio');
+        });
+        this.submittedEditIndicio = false;
+    }
+    showModalDeleteIndicio(data) {
+        setTimeout(() => {
+            this.Logs('indicio', 'Consulta actividad de eliminacion indicio' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Consulta', 'Visualizo los detalles de eliminacion de indicio ');
+        }, 1000);
+        this.indicioXPeritoDataSelected = JSON.parse(JSON.stringify(data));
+        this.modalService.confirm({
+            nzTitle: '¿Esta seguro que desea eliminar el indicio?',
+            nzContent: '<b style="color: red;">Se eliminara el indicio: ' + this.indicioXPeritoDataSelected.identificacion + ' de la carpeta de investigacion: ' + this.indicioXPeritoDataSelected.identificacion + '</b>',
+            nzOkText: 'Si',
+            nzOkType: 'danger',
+            nzOnOk: () => {
+                this.indiciosService.deleteIndicio(this.indicioXPeritoDataSelected.id_indicio).subscribe(result => {
+                    this.toastr.success('Indicio eliminado correctamente!');
+                    setTimeout(() => {
+                        this.Logs('indicios', 'Eliminacion del indicio ' + this.indicioXPeritoDataSelected.identificacion, this.indicioXPeritoDataSelected.id_indicio, 'Eliminacion', 'Se elimino el indicio: ' + this.indicioXPeritoDataSelected.identificacion + ' de la carpeta de investigacion: ' + this.indicioXPeritoDataSelected.identificacion + '.');
+                    }, 1000);
+                    this.indiciosXPerito = this.indiciosXPerito.filter(obj => obj.id_indicio !== this.indicioXPeritoDataSelected.id_indicio);
+                    this.indiciosXPerito = [...this.indiciosXPerito];
+                }, error => {
+                    this.toastr.error('Hubo un error al eliminar el indicio');
+                });
+            },
+            nzCancelText: 'No',
+            nzOnCancel: () => {
+            }
+        });
+    }
+    //PDF
+    showModalViewPDFXIndicio() {
+        this.indicioDataSelectedToPDF = JSON.parse(JSON.stringify(this.dataIndicioToPDF));
+        this.carpetaDataSelectedToPDF = JSON.parse(JSON.stringify(this.dataCarpetaToPDF));
+        this.servidorpublicoDataSelectedToPDF = JSON.parse(JSON.stringify(this.dataServidorPublicoToPDF));
+        this.entregaService.getEntregaXIndicioNUC(this.carpetaDataSelectedToPDF.nuc, this.indicioDataSelectedToPDF.identificacion).subscribe(request => {
+            this.entregaXNUC = JSON.parse(JSON.stringify(request));
+            console.log(request);
+            console.log(this.entregaXNUC);
+        }, error => {
+            console.log(error);
+        });
+        this.isVisibleViewPDFXIndicio = true;
+    }
+    handleCancelViewPDFXIndicio() {
+        this.isVisibleViewPDFXIndicio = false;
+    }
+    generatePDFXIndicio() {
+        var namePDF = 'Carpeta de investigación ' + this.carpetaDataSelectedToPDF.nuc + '.pdf';
+        var data = document.getElementById('viewpdfXIndiciodesing');
+        //let data2 = document.getElementById('hoja2');
+        const doc = new jspdf__WEBPACK_IMPORTED_MODULE_18__["jsPDF"]({
+            orientation: "p",
+            // unit: "px",
+            unit: "px",
+            // format: [800, 1350],
+            format: [795, 1041]
+        });
+        //doc.html(data);
+        //doc.insertPage(2)
+        //doc.(data2);
+        doc.html(data, {
+            callback(rst) {
+                rst.save(namePDF);
+            }
+        });
+    }
+};
+PeritosComponent.ctorParameters = () => [
+    { type: src_app_services_carpeta_service__WEBPACK_IMPORTED_MODULE_12__["carpetaService"] },
+    { type: src_app_services_indicio_service__WEBPACK_IMPORTED_MODULE_15__["indicioService"] },
+    { type: src_app_services_peritos_service__WEBPACK_IMPORTED_MODULE_16__["peritosService"] },
+    { type: src_app_services_entrega_service__WEBPACK_IMPORTED_MODULE_13__["entregaService"] },
+    { type: src_app_services_servidorpublico_service__WEBPACK_IMPORTED_MODULE_17__["servidorpublicoService"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_1__["DatePipe"] },
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_7__["ToastrService"] },
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: src_app_services_home_service__WEBPACK_IMPORTED_MODULE_14__["HomeService"] },
+    { type: _angular_platform_browser__WEBPACK_IMPORTED_MODULE_5__["DomSanitizer"] },
+    { type: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_6__["NzModalService"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ViewChild"])('map', { static: false })
+], PeritosComponent.prototype, "gmapElement", void 0);
+PeritosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
+        selector: 'app-peritos',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./peritos.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/components/peritos/peritos.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./peritos.component.css */ "./src/app/components/peritos/peritos.component.css")).default]
+    })
+], PeritosComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/peritos/peritos.module.ts":
+/*!******************************************************!*\
+  !*** ./src/app/components/peritos/peritos.module.ts ***!
+  \******************************************************/
+/*! exports provided: PeritosModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PeritosModule", function() { return PeritosModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _peritos_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./peritos-routing.module */ "./src/app/components/peritos/peritos-routing.module.ts");
+/* harmony import */ var _peritos_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./peritos.component */ "./src/app/components/peritos/peritos.component.ts");
+/* harmony import */ var ngx_permissions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ngx-permissions */ "./node_modules/ngx-permissions/fesm2015/ngx-permissions.js");
+/* harmony import */ var angular_admin_lte__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! angular-admin-lte */ "./node_modules/angular-admin-lte/fesm2015/angular-admin-lte.js");
+/* harmony import */ var ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ng-zorro-antd */ "./node_modules/ng-zorro-antd/fesm2015/ng-zorro-antd.js");
+/* harmony import */ var _ant_design_icons_angular_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @ant-design/icons-angular/icons */ "./node_modules/@ant-design/icons-angular/fesm2015/ant-design-icons-angular-icons.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
+
+
+
+
+
+
+
+
+
+const antDesignIcons = _ant_design_icons_angular_icons__WEBPACK_IMPORTED_MODULE_9__;
+const icons = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+
+let PeritosModule = class PeritosModule {
+};
+PeritosModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        declarations: [_peritos_component__WEBPACK_IMPORTED_MODULE_5__["PeritosComponent"]],
+        imports: [
+            _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+            _peritos_routing_module__WEBPACK_IMPORTED_MODULE_4__["PeritosRoutingModule"],
+            ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NzDropDownModule"],
+            ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NgZorroAntdModule"],
+            ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NzSelectModule"],
+            ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NzModalModule"],
+            angular_admin_lte__WEBPACK_IMPORTED_MODULE_7__["BoxModule"],
+            angular_admin_lte__WEBPACK_IMPORTED_MODULE_7__["BoxSmallModule"],
+            ngx_permissions__WEBPACK_IMPORTED_MODULE_6__["NgxPermissionsModule"].forChild(),
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
+        ],
+        schemas: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["CUSTOM_ELEMENTS_SCHEMA"]],
+        providers: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["DatePipe"], { provide: ng_zorro_antd__WEBPACK_IMPORTED_MODULE_8__["NZ_ICONS"], useValue: icons }]
+    })
+], PeritosModule);
+
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=components-peritos-peritos-module-es2015.js.map
